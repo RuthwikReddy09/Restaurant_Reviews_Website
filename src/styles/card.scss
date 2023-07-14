@@ -1,0 +1,33 @@
+@import "colors.scss";
+
+.card{
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 0 1px 1px $shadow;
+    width: 250px;
+    height: 250px;
+    border-radius: 8px;
+    transition: 0.2s ease;
+    // &:hover{
+    //     width: 255px;
+    //     height: 255px;
+    // }
+    .cimage{
+        background-color:bisque;
+        height: 85%;
+    }
+    .cdata{
+        padding: 0 5px;
+        height: 15%;
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .like{
+            display: flex;
+            gap: 5px;
+        }
+  
+    }
+
+}
