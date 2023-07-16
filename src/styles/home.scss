@@ -1,12 +1,35 @@
-
+@import "colors.scss";
 
 .home{
+    
     width: 100%;
     height: auto;
+    min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding-top:80px;
+    #add{
+        width:150px;
+        height: 30px;
+        text-align: center;
+        line-height: 28px;
+        background-color: $primary;
+        text-decoration: none;
+        border: none;
+        color: white;
+        border-radius: 5px;
+    }
+    .homecards{
+        // border: 2px solid red;
+        width: 100%;
+        min-height: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding-top:80px;
+    }
 }

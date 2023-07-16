@@ -8,7 +8,7 @@ import "./styles/register.scss";
 import "./styles/about.scss";
 import "./styles/contact.scss";
 import "./styles/restaurant.scss";
-import "./styles/sidebar.scss";
+import "./styles/add.scss"
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Footer from './components/Footer';
@@ -17,7 +17,8 @@ import Register from './components/Register';
 import About from './components/About';
 import Contact from './components/Contact';
 import Restaurant from './components/Restaurant';
-import Sidebar from './components/Sidebar';
+import Add from './components/Add';
+
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -26,14 +27,17 @@ function App() {
       <Router>
         <div className="App">
           <Navbar />
-          {/* <Sidebar/> */}
+          
           <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/about" element={<About/>}></Route>
             <Route path="/contact" element={<Contact/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
+            <Route path="/logout" element={<Register/>}></Route>
+            <Route path="/addReview" element={<Add/>}></Route>
             <Route path="/restaurant/:resto" element={<Restaurant/>}></Route>
+
             <Route path="/*" element={<Home/>}></Route>
           </Routes>
           <Footer />

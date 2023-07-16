@@ -14,9 +14,9 @@ function Card({data}) {
       setLike(!like);
   }
   return (
-      <Link className='card' to={`/restaurant/${data.name}`}>
+      <Link className='card' to={`/restaurant/${data.name}`} state={data}>
         <div className="cimage">
-          <img src="" alt="Error"/>
+          <img src={data.url} alt="Error"/>
         </div>
         <div className="cdata">
           <h5>{data.name},{data.location}</h5>

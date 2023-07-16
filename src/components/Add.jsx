@@ -1,0 +1,48 @@
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
+import  axios  from 'axios'
+function Add() {
+    let navigate = useNavigate();
+    const [name,setName] = useState()
+    const [location,setLocation] = useState()
+    const [rating,setrating] = useState(0)
+    const [review,setreview] = useState()
+    const [url,setUrl] = useState()
+    function addNew()
+    {
+          axios.post('http://localhost:5000/addReview', {
+            name:name,
+            location: location,
+            rating: rating,
+            review:review,
+            url:url
+          })
+          .then(function (response) {
+            console.log(response);
+            // alert(response.data);
+            return navigate("/");
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+          
+    }
+    return (
+        <div className='add'>
+            <div className='addcard'>
+            <h1>Add a Review</h1>
+            <form className="addform">
+                <input type="text" name="name" onChange={(e)=>setName(e.target.value)} className='addinput' placeholder='Restaurant Name' required />
+                <input type="text" name="location" onChange={(e)=>setLocation(e.target.value)} className='addinput'  placeholder='Location'  required />
+                <input type="number" name="rating" onChange={(e)=>setrating(e.target.value)} max='5' min='0' className='addinput'  placeholder='rating &#9733;'  required />
+                <textarea name="review"  cols="30" onChange={(e)=>setreview(e.target.value)} className='addinput' id ="textarea"rows="10" placeholder='Review . . .' required></textarea>
+                <input type="url" name="image" id="image" onChange={(e)=>setUrl(e.target.value)} className='addinput' placeholder='Image url'/>
+                <button type="button" id="submit" onClick={addNew}>Submit</button>
+            </form>
+            </div>
+        </div>
+    )
+}
+
+export default Add

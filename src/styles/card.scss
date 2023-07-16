@@ -15,6 +15,14 @@
     .cimage{
         background-color:bisque;
         height: 85%;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            object-fit:cover;
+        }
     }
     .cdata{
         padding: 0 5px;
@@ -27,7 +35,6 @@
             display: flex;
             gap: 5px;
         }
-  
     }
 
 }

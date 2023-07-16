@@ -1,139 +1,28 @@
 import React from 'react';
 import Card from './Card';
 
-
-
+import { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
-
-   const resto = [
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Hotel Vivera",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Mehfil",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Sampoorna Hotel",
-      location:"India",
-      rating:4
-    },
-    {
-      name:"Santosh Dabha",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Hotel Vivera",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Mehfil",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Sampoorna Hotel",
-      location:"India",
-      rating:4
-    },
-    {
-      name:"Santosh Dabha",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Hotel Vivera",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Mehfil",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Sampoorna Hotel",
-      location:"India",
-      rating:4
-    },
-    {
-      name:"Santosh Dabha",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Hotel Vivera",
-      location:"India",
-      rating:4.5
-    },
-    {
-      name:"Tulips Restaurant",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Mehfil",
-      location:"India",
-      rating:5
-    },
-    {
-      name:"Sampoorna Hotel",
-      location:"India",
-      rating:4
-    },
-    {
-      name:"Santosh Dabha",
-      location:"India",
-      rating:4.5
-    }
-  ]
+  const [data,setData]=useState([{}]);
+  useEffect(()=>{
+    fetch("/restos").then(
+      res =>res.json()
+    ).then(
+      data=>{
+        setData(data)
+        console.log(data)
+      }
+    )
+  },[])
   return (
     <div className='home'>
 
-
-      {resto.map(i=><Card data={i}/>)}
-
+      <Link id="add" to="/addReview">Add a Review</Link>
+      <div className="homecards">
+        {data.map(i=><Card data={i} key={`${i.key}`}/>)}
+      </div>
     </div>
   )
 }

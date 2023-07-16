@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu } from "react-icons/ai";
-import Sidebar from './Sidebar';
-import "../styles/sidebar.scss";
+
 function Navbar() {
   const [menu, setMenu] = useState(false);
   function navMenu(e) {
@@ -21,6 +20,7 @@ function Navbar() {
           <Link to="/contact">Contact</Link>
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
+          <Link to="/logout">Logout</Link>
         </div>
         <div className="navsearch">
           <label htmlFor="search" className='sicon'><IoSearchCircleSharp color='rgb(255, 56, 92)' size={30} /></label>
@@ -48,6 +48,7 @@ function Navbar() {
             <Link to="/contact" onClick={navMenu}>Contact</Link>
             <Link to="/login" onClick={navMenu}>Login</Link>
             <Link to="/register" onClick={navMenu}>Register</Link>
+            <Link to="/logout" onClick={navMenu}>Logout</Link>
           </div>
         </div>}
     </>
