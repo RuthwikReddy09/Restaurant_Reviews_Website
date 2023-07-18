@@ -31,13 +31,16 @@
 }
 
 
-// @media screen AND (max-width:500px)
-// {
-//     #restoimage{
-//         width: 250px;
-//         height: 100px;
-//     }
-//     #heading{
-//         color: black;
-//     }
-// }
+@media screen AND (max-width:500px)
+{
+    .restaurant{
+        .restodata{
+
+            #restoimage{
+                width: 300px;
+                height: 200px;
+            }
+
+        }
+    }
+}

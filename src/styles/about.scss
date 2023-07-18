@@ -20,3 +20,20 @@
         }
     }
 }
+
+
+@media (max-width:550px){
+    .about{
+        height: 120vh;
+    }
+}
+
+@media (max-width:350px){
+    .about{
+        .aboutc{
+            .aboutimage{
+                width: 200px;
+            }
+        }
+    }
+}

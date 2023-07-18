@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost/UserDetails"
 # db.init_app(app)
 CORS(app,supports_credentials=True)
 db=SQLAlchemy(app)
-
+# server_session=Session(app)
 class User(db.Model):
     phone = db.Column(db.String(10), primary_key=True,nullable=False)
     username = db.Column(db.String(255), unique=True, nullable=False)
@@ -38,26 +38,27 @@ def signup():
     username = request.json["username"]
     password = request.json["password"]
     cpassword = request.json["cpassword"]
-    print(phone,username,password)
+    # print(phone,username,password)
     entry=User(phone=phone,username=username,password=password)
     db.session.add(entry)
     db.session.commit()
-    return "Registered Successfully"
+    return jsonify({"username":f"{username}","message":"Registered Successfully"})
    
 @app.route("/login",methods=["POST"])
 def login():
-    if 'user' in session:
+    if "user" in session:
+        print(session)
         return "session"
     username = request.json["username"]
     password = request.json["password"]
-    info = User.query.all()
-    for i in info:
-      if username==i.username and password==i.password:
-          session['user']=username
-          print(session)
-          return "Login Successful"
-    return "Invalid Credentials"
-
+    info = User.query.filter_by(username=username).first()
+    if(info):
+    # print(info.username,info.password)
+        if username==info.username and password==info.password:
+            session["user"]=username
+            # print(session)
+            return jsonify({"username":f"{username}","message":"Login Successful"})
+    return jsonify({"message":"Invalid Credentials"})
 
 @app.route("/addReview",methods=["POST"])
 def add():
@@ -66,16 +67,23 @@ def add():
     rating=request.json['rating']
     review=request.json['review']
     url=request.json['url']
-    entry=Reviews(name=name,location= location,rating= rating,review=review,url=url)
-    db.session.add(entry)
-    db.session.commit()
-    return "Review Added Successfully"
+    newreview = Reviews.query.filter_by(name=name).first()
+    if(newreview):
+        newreview.review=newreview.review+' "'+review+'"'
+        db.session.commit()
+    else:
+        review=' "'+review+'"'
+        entry=Reviews(name=name,location= location,rating= rating,review=review,url=url)
+        db.session.add(entry)
+        db.session.commit()
+    return jsonify({"message":"Review Added Successfully"})
 
-@app.route("/logout")
+@app.route("/logout",methods=["POST"])
 def logout():
     session.clear()
-    print(session)
-    return "Logged Out"
+    # print(session)
+    return jsonify({"message":"Logged Out"})
+
 
 @app.route("/get")
 def get():

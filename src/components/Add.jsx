@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import  axios  from 'axios'
 function Add() {
     let navigate = useNavigate();
@@ -21,7 +22,18 @@ function Add() {
           .then(function (response) {
             console.log(response);
             // alert(response.data);
-            return navigate("/");
+            // return navigate("/");
+            toast.success('Review Added Successfully', {
+              position: "top-right",
+              color:"red",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
           })
           .catch(function (error) {
             console.log(error);
@@ -39,6 +51,7 @@ function Add() {
                 <textarea name="review"  cols="30" onChange={(e)=>setreview(e.target.value)} className='addinput' id ="textarea"rows="10" placeholder='Review . . .' required></textarea>
                 <input type="url" name="image" id="image" onChange={(e)=>setUrl(e.target.value)} className='addinput' placeholder='Image url'/>
                 <button type="button" id="submit" onClick={addNew}>Submit</button>
+                <ToastContainer />
             </form>
             </div>
         </div>

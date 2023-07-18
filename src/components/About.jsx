@@ -18,7 +18,6 @@ function About() {
           <br />
           Happy dining,<br />
           The StarDining Team
-
         </div>
       </div>
     </div>

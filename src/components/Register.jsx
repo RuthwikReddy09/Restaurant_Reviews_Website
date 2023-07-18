@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 function Register() {
-  let navigate = useNavigate();
+
   const [phone,setPhone] = useState();
   const [username,setUsername] = useState();
   const [password,setPassword] = useState();
@@ -21,9 +22,17 @@ function Register() {
       .then(function (response) {
         console.log(response);
         // alert(response.data);
-        return navigate("/login")
-
-
+        toast.success('SignUp Successful', {
+          position: "top-right",
+          color:"red",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -45,6 +54,7 @@ function Register() {
           <input type="password" value={cpassword} onChange={(e)=>setCpassword(e.target.value)} name="cpassword" id="cpassword" placeholder='Confirm password' required/>
           <button type="button" id="submit" onClick={Register}>Sign In</button>
           <p id="login">Already have an account? <Link id="login" to="/login" style={{color:"red"}}>Login</Link> </p>
+          <ToastContainer />
         </form>
       </div>
     </div>
